@@ -31,7 +31,6 @@ export const parametricSvg =
     const sectionIndex = Math.ceil(t * sections.length) - 1
     const newT = t * sections.length - sectionIndex
 
-    const prevC = path[sectionIndex]
     const c = sections[sectionIndex]
     const { code } = c
     const start: Complex = [c.x0, c.y0]

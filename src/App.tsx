@@ -25,8 +25,9 @@ import {
   product,
   sum,
 } from "./utils/complex"
-import useWorker from "./hooks/useWorker"
+// import useWorker from "./hooks/useWorker"
 import svgPaths from "./svgPaths"
+import { getFourierPoints } from "./utils/fourier"
 const { PI } = Math
 
 function App() {
@@ -61,12 +62,13 @@ function App() {
     () => maxCoefficients.slice(0, numberOfCircles),
     [maxCoefficients, numberOfCircles],
   )
-  const numberOfPoints = 2000 * Math.ceil(logScale / 2)
-  const fourierPoints = useWorker<Complex[]>(
-    "../utils/fourierPointsWorker.ts",
-    [],
-    [numberOfPoints, coefficients],
-  )
+  const numberOfPoints = 500 * Math.ceil(logScale / 2)
+  const fourierPoints = getFourierPoints(numberOfPoints, coefficients)
+  //   const fourierPoints = useWorker<Complex[]>(
+  //     "../utils/fourierPointsWorker.ts",
+  //     [],
+  //     [numberOfPoints, coefficients],
+  //   )
 
   useEffect(() => {
     const handleResize = () => {
